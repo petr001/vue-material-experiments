@@ -5,9 +5,6 @@
       readonly
       v-model="content"
       v-bind="{ required, placeholder, disabled }"
-      @focus="onFocus"
-      @blur="onBlur"
-      @input="onInput"
       ref="textInput">
     </md-input>
 
@@ -23,6 +20,7 @@
   import MdComponent from 'core/MdComponent'
   import MdUuid from 'core/MdUuid'
   import MdFieldMixin from '../MdFieldMixin'
+  import MdInput from '../MdInput/MdInput.vue'
 
   export default new MdComponent({
     name: 'MdFile',
@@ -42,6 +40,14 @@
       placeholder: String,
       accept: String,
       multiple: Boolean
+    },
+    // data () {
+    //   return {
+    //     fileName: this.content
+    //   }
+    // },
+    components: {
+      MdInput
     },
     methods: {
       getMultipleName (files) {
@@ -77,7 +83,7 @@
         const files = $event.target.files || $event.dataTransfer.files
         this.content = this.getFileName(files, $event)
         this.$emit('change', files || $event.target.value)
-        this.$emit('input', this.filename)
+        this.$emit('input', this.content)
       }
     }
   })
