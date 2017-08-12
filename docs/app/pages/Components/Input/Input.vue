@@ -1,4 +1,5 @@
 <example src="./examples/TextFields.vue" />
+<example src="./examples/FileField.vue" />
 <example src="./examples/ErrorsMessages.vue" />
 <example src="./examples/Counters.vue" />
 <example src="./examples/Icons.vue" />
@@ -14,6 +15,8 @@
       <h2>Text Fields</h2>
 
       <code-example title="Input and Textarea" :component="examples['text-fields']" />
+
+      <code-example title="Input file" :component="examples['file-field']" />
     </div>
 
     <div class="page-container-section">

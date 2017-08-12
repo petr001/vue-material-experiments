@@ -3,29 +3,31 @@
     @click="openPicker">
     <md-input
       readonly
-      v-model="filename"
-      :required="required"
-      :placeholder="placeholder"
-      :disabled="disabled"
+      v-model="content"
+      v-bind="{ required, placeholder, disabled }"
+      @focus="onFocus"
+      @blur="onBlur"
+      @input="onInput"
       ref="textInput">
     </md-input>
 
     <input
       type="file"
-      :id="id"
-      :name="name"
-      :disabled="disabled"
-      :multiple="multiple"
-      :accept="accept"
+      v-bind="{ id, name, disabled, multiple, accept }"
       @change="onFileSelected"
       ref="fileInput">
   </div>
 </template>
 
 <script>
+  import MdComponent from 'core/MdComponent'
   import MdUuid from 'core/MdUuid'
-  export default {
+  import MdFieldMixin from '../MdFieldMixin'
+
+  export default new MdComponent({
     name: 'MdFile',
+    mixins: [MdFieldMixin],
+    inject: ['MdField'],
     props: {
       value: String,
       id: {
@@ -40,16 +42,6 @@
       placeholder: String,
       accept: String,
       multiple: Boolean
-    },
-    data () {
-      return {
-        filename: this.value
-      }
-    },
-    watch: {
-      value () {
-        this.filename = this.value
-      }
     },
     methods: {
       getMultipleName (files) {
@@ -83,11 +75,10 @@
       },
       onFileSelected ($event) {
         const files = $event.target.files || $event.dataTransfer.files
-        this.filename = this.getFileName(files, $event)
-        // this.$emit('selected', files || $event.target.value)
+        this.content = this.getFileName(files, $event)
         this.$emit('change', files || $event.target.value)
         this.$emit('input', this.filename)
       }
     }
-  }
+  })
 </script>

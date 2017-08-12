@@ -7,7 +7,6 @@ import MdDivider from './MdDivider'
 import MdDrawer from './MdDrawer'
 import MdElevation from './MdElevation'
 import MdField from './MdField'
-import MdFile from './MdFile'
 import MdIcon from './MdIcon'
 import MdImage from './MdImage'
 import MdLayout from './MdLayout'
@@ -28,7 +27,6 @@ export default {
   MdDrawer,
   MdElevation,
   MdField,
-  MdFile,
   MdIcon,
   MdImage,
   MdLayout,
